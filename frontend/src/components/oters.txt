@@ -1,0 +1,9 @@
+// When a message is sent to a room
+io.to(roomId).emit("newRoomMessage", message);
+
+// When someone reacts
+io.to(roomId).emit("roomMessageReacted", { messageId, reactions });
+
+// When someone joins/leaves
+io.to(roomId).emit("roomMemberJoined", { roomId, user });
+io.to(roomId).emit("roomMemberLeft",   { roomId, userId });
