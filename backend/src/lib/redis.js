@@ -1,7 +1,8 @@
 import { createClient } from "redis";
+import { ENV } from "./env";
 
 const client = createClient({
-  url: "redis://default:harsh@123@redis-12788.crce263.ap-south-1-1.ec2.cloud.redislabs.com:12788",
+  url: ENV.REDIS_URL,
 });
 
 client.on("error", (err) => {
