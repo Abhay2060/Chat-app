@@ -1,6 +1,6 @@
-import RoomsFooter from "../components/rooms/Roomsfooter";
-import RoomsGrid from "../components/rooms/Roomsgrid";
-import RoomsHeader from "../components/rooms/Roomsheader";
+import RoomsFooter from "../components/rooms/Roomsfooter.jsx";
+import RoomsGrid from "../components/rooms/Roomsgrid.jsx";
+import RoomsHeader from "../components/rooms/Roomsheader.jsx";
 
 
 export default function RoomsPage({ onJoin }) {
