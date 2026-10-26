@@ -111,6 +111,21 @@ export const verifyOTP = async (req,res) =>{
             })
         }
 
+        // ✅ Fetch user data from Redis and create the user in MongoDB
+        const rawUserData = await client.get(userKey);
+        if (!rawUserData) {
+            return res.status(400).json({
+                success: false,
+                message: "Session expired. Please signup again",
+            });
+        }
+        const userData = JSON.parse(rawUserData);
+
+        const newUser = await User.create({
+            fullName: userData.fullName,
+            email: userData.email,
+            password: userData.password,
+        });
 
         generateToken(newUser._id, res);
         await client.del(otpKey);
