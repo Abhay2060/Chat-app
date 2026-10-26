@@ -12,10 +12,12 @@ function SignUpPage() {
   // once signup sets pendingEmail, navigate to OTP page
   
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    signup(formData);
-    navigate("/verify-otp");
+    const success = await signup(formData);
+    if (success) {
+      navigate("/verify-otp");
+    }
   };
 
   return (

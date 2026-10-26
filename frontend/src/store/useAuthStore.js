@@ -43,8 +43,10 @@ export const useAuthStore = create((set, get) => (
       const res = await axiosInstance.post("/auth/signup", data);
       set({ pendingEmail: res.data.email });
       toast.success("Verification code sent to your email!");
+      return true;
     } catch (error) {
       toast.error(error.response?.data?.message || "Signup failed");
+      return false;
     } finally {
       set({ isSigningUp: false });
     }

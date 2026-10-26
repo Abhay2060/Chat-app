@@ -38,7 +38,7 @@ export const resendOtp = async(req,res) =>{
         await client.set(`otp:${email}`, newOtp, { EX: 300 })
         await client.set(`user:${email}`, JSON.stringify(data), {KEEPTTL: true,});
         //jsoawait client.get(`user:${email}`)
-        sendTestEmail(email,newOtp);
+        await sendTestEmail(email, newOtp);
         
         res.status(200).json({
             success:true,
@@ -81,7 +81,7 @@ export const resendOTP = async(req,res) =>{
         const newOtp = Math.floor(100000 + Math.random() * 900000)
         await client.set(`otp:${email}`, newOtp, { EX: 300 })
         //jsoawait client.get(`user:${email}`)
-        sendTestEmail(email,newOtp);
+        await sendTestEmail(email, newOtp);
         
         return res.status(200).json({
             success:true,
