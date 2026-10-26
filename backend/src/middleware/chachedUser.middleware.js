@@ -1,4 +1,4 @@
-import client from "../lib/redis";
+import client from "../lib/redis.js";
 
 const checkSignupSession = async (req, res, next) => {
   const { email } = req.body;
