@@ -187,7 +187,7 @@ export const signup = async (req, res) => {
 
     await client.set(`otp:${email}`, otp, { EX: 300 });
 
-    sendTestEmail(email, otp);
+    await sendTestEmail(email, otp);
 
     return res.status(200).json({
       message: "OTP sent",
