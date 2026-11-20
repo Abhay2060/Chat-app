@@ -127,11 +127,18 @@ export const verifyOTP = async (req,res) =>{
             password: userData.password,
         });
 
-        generateToken(newUser._id, res);
+        const token = generateToken(newUser._id, res);
         await client.del(otpKey);
         await client.del(userKey);
         await client.del(blockKey);
         await client.del(attemptsKey);
+        
+        res.cookie("jwt", token, {
+            httpOnly: true,
+            secure: true, 
+            sameSite: "none",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        });
 
         return res.status(200).json({
             _id: newUser._id,
